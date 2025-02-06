@@ -1,0 +1,154 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- --------------------------------------------- EDIT/UPDATE KNG Food DB RECORD MODAL VIEW START ---------------------------------------------  -->
+ <div th:fragment="editNadKngFoodDbModal">
+	  
+ 		<div class="modal fade"  id="editNadKngFoodDbModal" >
+        <div class="modal-dialog modal-xl" style="width:70%">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Clinic Record</h4>
+              <button type="button" class="close cancelButton" th:attr="data-cancel-url=@{/kngFoodDb/list}" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+           <form th:action="@{/kngFoodDb/updateById}" th:object="${nadClinicDto}" method="post">
+           <input type="hidden" name="_method" value="PUT">
+            <div class="modal-body">
+	          <div class="row">
+
+							<div class="col-sm-4">
+							
+							<div class="form-group" hidden>
+	                        <label>Id:</label>
+	                        <input class="form-control" type="hidden" id="idEdit" th:field="*{id}" readonly>
+	                      </div>
+							
+							
+								<div class="form-group">
+									<label>Food Code:</label> <input class="form-control"
+										type="text" id="fcodeEdit" th:field="*{fcode}"
+										placeholder="Enter Food Code">
+									<p th:if="${#fields.hasErrors('fcode')}" class="text-danger"
+										th:errors="*{fcode}"></p>
+								</div>
+							</div>
+							
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label>Food Name:</label> <input class="form-control"
+										type="text" id="foodNameEdit" th:field="*{foodName}"
+										placeholder="Enter Food Name">
+									<p th:if="${#fields.hasErrors('foodName')}" class="text-danger"
+										th:errors="*{foodName}"></p>
+								</div>
+							</div>
+							
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label>Food Type:</label> <input class="form-control"
+										type="text" id="foodTypeEdit" th:field="*{foodType}"
+										placeholder="Enter Food Type">
+									<p th:if="${#fields.hasErrors('foodType')}" class="text-danger"
+										th:errors="*{foodType}"></p>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="row">
+
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label>Portions:</label> <input class="form-control"
+										type="text" id="portionsEdit" th:field="*{portions}"
+										placeholder="Enter Portions">
+									<p th:if="${#fields.hasErrors('portions')}" class="text-danger"
+										th:errors="*{portions}"></p>
+								</div>
+							</div>
+							
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label>Measurement:</label> <input class="form-control"
+										type="text" id="measurementEdit" th:field="*{measurement}"
+										placeholder="Enter Measurement">
+									<p th:if="${#fields.hasErrors('measurement')}"
+										class="text-danger" th:errors="*{measurement}"></p>
+								</div>
+							</div>
+							
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label>Calories:</label> 
+									<input class="form-control" type="number" id="caloriesEdit" th:field="*{calories}" placeholder="Enter Calories" step="0.01">
+									<p th:if="${#fields.hasErrors('calories')}" class="text-danger" th:errors="*{calories}"></p>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="row">
+
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label>Carbohydrates:</label> 
+									<input class="form-control" type="number" id="carbohydratesEdit" th:field="*{carbohydrates}" placeholder="Enter Carbohydrates" step="0.01">
+									<p th:if="${#fields.hasErrors('carbohydrates')}" class="text-danger" th:errors="*{carbohydrates}"></p>
+								</div>
+							</div>
+							
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label>Fat:</label> 
+									<input class="form-control" type="number"id="fatEdit" th:field="*{fat}" placeholder="Enter Fat" step="0.01">
+									<p th:if="${#fields.hasErrors('fat')}" class="text-danger" th:errors="*{fat}"></p>
+								</div>
+							</div>
+							
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label>Protein:</label>
+									 <input class="form-control" type="number" id="proteinEdit" th:field="*{protein}" placeholder="Enter Protein" step="0.01">
+									<p th:if="${#fields.hasErrors('protein')}" class="text-danger" th:errors="*{protein}"></p>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="row">
+
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label>Fiber:</label> 
+									<input class="form-control" type="number" id="fiberEdit" th:field="*{fiber}" placeholder="Enter Fiber" step="0.01">
+									<p th:if="${#fields.hasErrors('fiber')}" class="text-danger" th:errors="*{fiber}"></p>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label>Sodium:</label>
+									<input class="form-control" type="number" id="sodiumEdit" th:field="*{sodium}" placeholder="Enter Sodium"  step="0.01">
+									<p th:if="${#fields.hasErrors('sodium')}" class="text-danger" th:errors="*{sodium}"></p>
+								</div>
+							</div>
+							
+						</div>
+						
+	              <div class="modal-footer">
+		              <button type="button" class="btn btn-default cancelButton" th:attr="data-cancel-url=@{/kngFoodDb/list}">Cancel</button>&nbsp&nbsp
+			          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+			          <button type="submit" class="btn btn-primary">Update</button>    
+			       </div>        
+            </form>
+              </div>           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+     
+</div>
+ <!-- --------------------------------------------- EDIT/UPDATE KNG Food DB RECORD MODAL VIEW END  ---------------------------------------------  -->
+ 
+ 
+ </html>

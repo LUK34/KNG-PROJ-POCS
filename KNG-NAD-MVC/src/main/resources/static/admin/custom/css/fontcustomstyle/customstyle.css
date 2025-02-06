@@ -1,0 +1,18 @@
+.thead-custom {
+    background-color: #2890F1; /* Adjust this to your preferred shade of dark grey */
+    color: white;
+}
+
+.highlight {
+    background-color: yellow;
+}
+
+.my-calendar td
+{
+	background-color: white;
+}
+
+.required{
+	color: red;
+}
+/*31415D,314D5D*/

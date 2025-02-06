@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<title>Meal Plan Template</title>
+</head>
+<body
+	class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+	<div layout:fragment="content">
+
+		<div th:if="${message != null}" id="toastContainer"
+			th:attr="data-message=${message}"></div>
+
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">Meal Plan Template Details</h1>
+
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Nutritionists</a></li>
+							<li class="breadcrumb-item active"><a
+								th:href="@{/nadMPTemplate/{parentId} (parentId=${parentId})}">Meal
+									Plan Template Details</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+
+
+		<!-- Main content -->
+		<section class="content">
+
+			<!--  ----------------------------------------------------- MEAL PLAN TEMPLATE START --------------------------------------------------- -->
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">Meal Plan Template Details:&nbsp;
+									&nbsp;</h3>
+							</div>
+
+							<div class="card-body">
+								<table id="example1" class="table table-bordered table">
+									<thead class="thead-custom">
+										<tr>
+											<th>#</th>
+											<th>Template Name</th>
+											<th>Template Code</th>
+											<th>Course Frequency(Days)</th>
+											<th>Energy(Kcal)</th>
+											<th>Fat(g)</th>
+											<th>Protein(g)</th>
+											<th>Carbohydrates(g)</th>
+											<th>Fibre(g)</th>
+											<th>Sodium(Mg)</th>
+											<th>Category</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="f:${nadMealPlanTemplateDetails_byId}">
+
+											<td>
+												<button type="button" class="btn btn-primary"
+													data-toggle="modal"
+													data-target="#createNadMPTemplateDayModal">
+													<i class="nav-icon fas fa-plus"></i>
+												</button>&nbsp;&nbsp;&nbsp;
+											</td>
+
+											<td th:text="${f.tplName}"></td>
+
+											<td th:text="${f.tplCode}"></td>
+											<td th:text="${f.tpleCrsFre}"></td>
+											<td th:text="${f.tplTEn}"></td>
+											<td th:text="${f.tplTFa}"></td>
+											<td th:text="${f.tplTPr}"></td>
+											<td th:text="${f.tplTCarb}"></td>
+											<td th:text="${f.tplTFib}"></td>
+											<td th:text="${f.tplTSod}"></td>
+											<td><span th:each="cat : ${nadMealPlanCategoryList}"
+												th:if="${cat.id == f.tplCat}" th:text="${cat.ctg}"> </span>
+											</td>
+										</tr>
+									</tbody>
+
+								</table>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+			<!--  ----------------------------------------------------- MEAL PLAN TEMPLATE END --------------------------------------------------- -->
+
+
+			<!--  ----------------------------------------------------- DAY SCHEDULE START --------------------------------------------------- -->
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">
+									Day Schedule:&nbsp; &nbsp;
+									<!-- 
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNadMPTemplateDayModal" >Add Row</button>
+					 -->
+								</h3>
+							</div>
+
+							<div class="card-body">
+
+								<table id="daySchedule" class="table table-bordered table">
+									<thead class="thead-custom">
+										<tr>
+											<th>#</th>
+											<th>Days</th>
+											<th>Energy(Kcal)</th>
+											<th>Fat(g)</th>
+											<th>Protein(g)</th>
+											<th>Carbohydrates(g)</th>
+											<th>Fibre(g)</th>
+											<th>Sodium(Mg)</th>
+										</tr>
+									</thead>
+
+									<div
+										th:if="${nadMealPlanTemplateDaysList_byId != null and !nadMealPlanTemplateDaysList_byId.isEmpty()}">
+										<tbody>
+											<tr th:each="f:${nadMealPlanTemplateDaysList_byId}">
+
+												<td><a
+													th:href="@{/nadMPTemplateDetails/{parentId}/editById (parentId=${parentId}, childId=${f.id})}"
+													class="btn btn-primary editButton"> <i
+														class="nav-icon fas fa-edit"></i>
+												</a></td>
+												<td><a
+													th:href="@{/nadMPTemplateDayFood/{id}(id=${f.id})}"> <span
+														th:text="${f.tplDays}"></span> <i class="fas fa-search"></i>
+												</a></td>
+												<td th:text="${f.tplTEn}"></td>
+												<td th:text="${f.tplTFa}"></td>
+												<td th:text="${f.tplTPr}"></td>
+												<td th:text="${f.tplTCarb}"></td>
+												<td th:text="${f.tplTFib}"></td>
+												<td th:text="${f.tplTSod}"></td>
+											</tr>
+										</tbody>
+									</div>
+								</table>
+
+							</div>
+							<!-- /.card-body -->
+
+						</div>
+						<!-- /.card -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+			<!--  ----------------------------------------------------- DAY SCHEDULE END --------------------------------------------------- -->
+
+
+		</section>
+
+
+		<!-- --------------------------------------------- CREATE NAD MEAL PLAN TEMPLATE DAY SCHEDULE RECORD MODAL VIEW START ---------------------------------------------  -->
+
+		<th:block
+			th:replace="nadmodals/createNadMPTemplateDayModal :: createNadMPTemplateDayModal"></th:block>
+
+		<!-- --------------------------------------------- CREATE NAD CLINIC RECORD MODAL VIEW END ---------------------------------------------  -->
+
+
+
+		<!-- --------------------------------------------- EDIT/UPDATE NAD MEAL PLAN TEMPLATE DAY SCHEDULE RECORD MODAL VIEW START ---------------------------------------------  -->
+
+		<th:block
+			th:replace="nadmodals/editNadMPTemplateDayModal :: editNadMPTemplateDayModal"></th:block>
+
+		<!-- --------------------------------------------- EDIT/UPDATE NAD CLINIC RECORD MODAL VIEW END  ---------------------------------------------  -->
+
+
+
+		<!-- --------------------------------------------- DELETE NAD MEAL PLAN TEMPLATE DAY SCHEDULE RECORD MODAL VIEW START  ---------------------------------------------  -->
+
+		<th:block th:replace="nadmodals/deleteModal :: deleteModal"></th:block>
+
+		<!-- --------------------------------------------- DELETE NAD RECORD MODAL VIEW END  ---------------------------------------------  -->
+
+	</div>
+
+
+
+</body>
+<th:block layout:fragment="script">
+
+	<script src="../admin/custom/nadjs/nadMPTemplateDayFood.js"></script>
+
+	<script th:inline="javascript">
+		document
+				.addEventListener(
+						"DOMContentLoaded",
+						function() {
+							/*<![CDATA[*/
+							// Thymeleaf processes showModal and assigns it as a boolean
+							let showNadDayScheduleCreateModal = /*[[${showNadDayScheduleCreateModal}]]*/false;
+							let showNadDayScheduleEditModal = /*[[${showNadDayScheduleEditModal}]]*/false;
+
+							if (showNadDayScheduleCreateModal) { // Check if showModal is true
+								let modal = new bootstrap.Modal(
+										document
+												.getElementById("createNadMPTemplateDayModal"));
+								modal.show(); // Open the modal
+							}
+
+							if (showNadDayScheduleEditModal) { // Check if showModal is true
+								let modal = new bootstrap.Modal(
+										document
+												.getElementById("editNadMPTemplateDayModal"));
+								modal.show(); // Open the modal
+							}
+							/*]]>*/
+
+						});
+	</script>
+
+
+
+</th:block>
+</html>

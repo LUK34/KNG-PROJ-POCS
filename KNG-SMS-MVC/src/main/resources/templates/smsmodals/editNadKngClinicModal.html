@@ -1,0 +1,77 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- --------------------------------------------- EDIT/UPDATE NAD CLINIC RECORD MODAL VIEW START ---------------------------------------------  -->
+ <div th:fragment="editNadKngClinicModal">
+	  
+ 		<div class="modal fade"  id="editNadKngClinicModal" >
+        <div class="modal-dialog modal-lg" style="width:70%">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Clinic Record</h4>
+              <button type="button" class="close cancelButton" th:attr="data-cancel-url=@{/nadClinics/list}" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+           <form th:action="@{/nadClinics/updateById}" th:object="${nadClinicDto}" method="post">
+           <input type="hidden" name="_method" value="PUT">
+            <div class="modal-body">
+	              <div class="row">
+	                      
+	                    <div class="col-sm-6">
+	                      <!-- text input -->
+	                     <div class="form-group" hidden>
+	                        <label>Id:</label>
+	                        <input class="form-control" type="hidden" id="idEdit" th:field="*{id}" readonly>
+	                      </div>
+	                      
+	                      <div class="form-group">
+	                        <label>Clinic Id:</label>
+	                        <input class="form-control" type="number" id="clinicidEdit" th:field="*{clinicid}">
+	                        <p th:if="${#fields.hasErrors('clinicid')}" class="text-danger" th:errors="*{clinicid}"></p>
+	                      </div>
+	                      
+	                    </div>
+	                 	 <div class="col-sm-6">
+		              		  <div class="form-group">
+		                        <label>Clinic Name En:</label>
+		                        <input class="form-control" type="text"  id="cnameEdit" th:field="*{cname}">
+		                        <p th:if="${#fields.hasErrors('cname')}" class="text-danger" th:errors="*{cname}"></p>
+		                      </div>
+	                	</div>   
+	              </div>
+	              	<div class="row">
+		              		<div class="col-sm-6">
+			              		  <div class="form-group">
+			                        <label>Clinic Name Ar:</label>
+			                        <input class="form-control" type="text" id="cnameaEdit" th:field="*{cnamea}">
+			                        <p th:if="${#fields.hasErrors('cnamea')}" class="text-danger" th:errors="*{cnamea}"></p>
+			                      </div>
+		                	</div>   
+		                	<div class="col-sm-6">
+			              		  <div class="form-group">
+			                        <label>Status:</label>
+			                         <select class="form-control" id="statEdit" th:field="*{stat}">    					  					    					    
+					          			<option value="Y" selected>Active</option>
+	 						 			 <option value="N">Inactive</option>
+	 					    			</select>	
+			                      </div>
+		                	</div>   	
+		             	 </div>
+	             </div>
+	              <div class="modal-footer">
+		              <button type="button" class="btn btn-default cancelButton" th:attr="data-cancel-url=@{/nadClinics/list}">Cancel</button>&nbsp&nbsp
+			          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+			          <button type="submit" class="btn btn-primary">Update</button>    
+			       </div>        
+            </form>
+              </div>           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+     
+</div>
+ <!-- --------------------------------------------- EDIT/UPDATE NAD CLINIC RECORD MODAL VIEW END  ---------------------------------------------  -->
+ 
+ 
+ </html>

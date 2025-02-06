@@ -1,0 +1,112 @@
+<html xmlns:th="http://www.thymeleaf.org">
+		
+<!-- --------------------------------------------- CREATE NAD MEAL PLAN CATEGORY RECORD MODAL VIEW START ---------------------------------------------  -->
+<div th:fragment="editNadMPTemplateDayModal">
+	
+ 	<div class="modal fade"  id="editNadMPTemplateDayModal"  th:attr="data-parent-id=${parentId}">
+        <div class="modal-dialog modal-xl" style="width:70%">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Day Schedule Record</h4>
+              <button type="button" class="close cancelButton" th:attr="data-cancel-url=@{/nadMPTemplateDetails/{id}(id=${id})}" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- enter here -->
+              <form th:action="@{/nadMPTemplateDetails/{id}/updateById(id=${id})}" th:object="${nadMPTemplateDaysDto}" method="POST">
+               <input type="hidden" name="_method" value="PUT">
+	              <div class="row">
+	                      
+	                        <div class="form-group" hidden>
+	                        <label>Id:</label>
+	                        <input class="form-control" type="hidden" id="idEdit" th:field="*{id}" readonly>
+	                      </div>
+	                      
+	                    <div class="col-sm-4">
+	                       <div class="form-group">
+		                        <label>Day Name: </label>
+		                        <input class="form-control"  type="text" id="tplDaysEdit" th:field="*{tplDays}" placeholder="Enter Day Schedule Name">
+		                      	 <p th:if="${#fields.hasErrors('tplDays')}" class="text-danger" th:errors="*{tplDays}"></p>
+		                   </div>	                   
+	                    </div>
+	                    
+	                     <div class="col-sm-4">
+								<div class="form-group">
+									<label>Meal Plan Template Name: </label> 
+									<select	class="form-control" type="number" id="tplIdEdit" th:field="*{tplId}">
+										<option 
+											th:each="e : ${nadMealPlanTemplateDetails_byId}"
+											th:value="${e.id}" 
+											th:text="${e.tplName}"></option>
+									</select>
+								</div>
+						</div>
+	                 	
+	              </div>
+	              <div class="row">
+	              		<div class="col-sm-4">
+		              		<div class="form-group">
+		                        <label>Energy(KCal):</label>
+		                        <input class="form-control"  type="number" id="tplTEnEdit" th:field="*{tplTEn}" placeholder="Enter Energy(KCal)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTEn')}" class="text-danger" th:errors="*{tplTEn}"></p>
+		                    </div>
+	                	</div>   
+	                	<div class="col-sm-4">
+		              		<div class="form-group">
+		                        <label>Fat(g):</label>
+		                         <input class="form-control"  type="number" id="tplTFaEdit" th:field="*{tplTFa}" placeholder="Enter Fat(g)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTFa')}" class="text-danger" th:errors="*{tplTFa}"></p>
+		                    </div>
+	                	</div> 
+	                	<div class="col-sm-4">
+		              		  <div class="form-group">
+		                        <label>Protein(g):</label>
+		                         <input class="form-control"  type="number" id="tplTPrEdit" th:field="*{tplTPr}" placeholder="Enter Protein(g)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTPr')}" class="text-danger" th:errors="*{tplTPr}"></p>
+		                    </div>
+	                	</div>   	
+	              </div>
+
+	              <div class="row">
+	              		<div class="col-sm-4">
+		              		<div class="form-group">
+		                        <label>Carbohydrates(g):</label>
+		                        <input class="form-control"  type="number" id="tplTCarbEdit" th:field="*{tplTCarb}" placeholder="Enter Carbohydrates(g)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTCarb')}" class="text-danger" th:errors="*{tplTCarb}"></p>
+		                    </div>
+	                	</div>   
+	                	<div class="col-sm-4">
+		              		<div class="form-group">
+		                        <label>Fibre(g):</label>
+		                         <input class="form-control"  type="number" id="tplTFibEdit" th:field="*{tplTFib}" placeholder="Enter Fibre(g)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTFib')}" class="text-danger" th:errors="*{tplTFib}"></p>
+		                    </div>
+	                	</div> 
+	                	<div class="col-sm-4">
+		              		  <div class="form-group">
+		                        <label>Sodium(Mg):</label>
+		                         <input class="form-control"  type="number" id="tplTSodEdit" th:field="*{tplTSod}" placeholder="Enter Sodium(Mg)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTSod')}" class="text-danger" th:errors="*{tplTSod}"></p>
+		                    </div>
+	                	</div>   	
+	              </div>
+	     
+	              <div class="modal-footer">
+	               		<button type="button" class="btn btn-default cancelButton" th:attr="data-cancel-url=@{/nadMPTemplateDetails/{id}(id=${id})}">Cancel</button>&nbsp&nbsp 
+			         	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+			         	<button type="submit" class="btn btn-primary">Update</button>    
+			      </div>        
+            </form>
+              </div>           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      
+      
+</div>    
+<!-- --------------------------------------------- CREATE NAD MEAL PLAN CATEGORY RECORD MODAL VIEW END ---------------------------------------------  -->
+ 	
+</html>

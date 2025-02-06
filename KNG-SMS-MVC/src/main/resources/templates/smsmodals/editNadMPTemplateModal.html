@@ -1,0 +1,151 @@
+<html xmlns:th="http://www.thymeleaf.org">
+		
+<!-- --------------------------------------------- CREATE NAD MEAL PLAN CATEGORY RECORD MODAL VIEW START ---------------------------------------------  -->
+<div th:fragment="editNadMPTemplateModal">
+	
+ 	<div class="modal fade"  id="editNadMPTemplateModal" >
+        <div class="modal-dialog modal-xl" style="width:70%">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Meal Plan Template Record</h4>
+              <button type="button" class="close cancelButton" th:attr="data-cancel-url=@{/nadMPTemplate/list}" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- enter here -->
+              <form th:action="@{/nadMPTemplate/updateById}" th:object="${nadMPTemplateDto}" method="POST">
+              <input type="hidden" name="_method" value="PUT">
+	              <div class="row">
+	                      
+	                       <div class="form-group" hidden>
+	                        <label>Id:</label>
+	                        <input class="form-control" type="hidden" id="idEdit" th:field="*{id}" readonly>
+	                      </div>
+	                      
+	                    <div class="col-sm-6">
+	                       <div class="form-group">
+		                        <label>Meal Template Name: </label>
+		                        <input class="form-control"  type="text" id="tplNameEdit" th:field="*{tplName}" placeholder="Enter Meal Template Name">
+		                      	 <p th:if="${#fields.hasErrors('tplName')}" class="text-danger" th:errors="*{tplName}"></p>
+		                   </div>	                   
+	                    </div>
+	                 	 <div class="col-sm-6">
+		              		<div class="form-group">
+		                        <label>Meal Category Name: </label>
+		                         <select class="form-control" id="tplCatEdit" th:field="*{tplCat}">		        	     					  					    					    
+				          			<option th:each="e:${nadMealPlanCategoryList}"
+				          					th:value="${e.id}"
+				          					th:text="${e.ctg}">
+				          			</option>
+ 					    		  </select>	
+		                     </div>
+	                	</div>   
+	              </div>
+	              <div class="row">
+	              		<div class="col-sm-4">
+		              		<div class="form-group">
+		                        <label>To Publish:</label>
+		                         <select class="form-control" id="tplPubEdit" th:field="*{tplPub}" placeholder="Enable/Disable">		        	     					  					    					    
+				          			<option value="Y" selected>Enable</option>
+ 						 			 <option value="N">Disable</option>
+ 					    			</select>	
+		                    </div>
+	                	</div>   
+	                	<div class="col-sm-4">
+		              		<div class="form-group">
+		                        <label>Number of Days:</label>
+		                         <input class="form-control"  type="number" id="tpleCrsFreEdit" th:field="*{tpleCrsFre}" placeholder="Enter Number of days">
+		                      	 <p th:if="${#fields.hasErrors('tpleCrsFre')}" class="text-danger" th:errors="*{tpleCrsFre}"></p>
+		                    </div>
+	                	</div> 
+	                	<div class="col-sm-4">
+		              		  <div class="form-group">
+		                        <label>To be Available:</label>
+		                         <select class="form-control" id="tplAvlEdit" th:field="*{tplAvl}" placeholder="Enable/Disable">		        	     					  					    					    
+				          			<option value="Y" selected>Enable</option>
+ 						 			 <option value="N">Disable</option>
+ 					    		</select>	
+		                    </div>
+	                	</div>   	
+	              </div>
+	              <div class="row">
+	              		<div class="col-sm-4">
+		              		<div class="form-group">
+		                        <label>Energy(KCal):</label>
+		                        <input class="form-control"  type="number" id="tplTEnEdit" th:field="*{tplTEn}" placeholder="Enter Energy(KCal)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTEn')}" class="text-danger" th:errors="*{tplTEn}"></p>
+		                    </div>
+	                	</div>   
+	                	<div class="col-sm-4">
+		              		<div class="form-group">
+		                        <label>Fat(g):</label>
+		                         <input class="form-control"  type="number" id="tplTFaEdit" th:field="*{tplTFa}" placeholder="Enter Fat(g)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTFa')}" class="text-danger" th:errors="*{tplTFa}"></p>
+		                    </div>
+	                	</div> 
+	                	<div class="col-sm-4">
+		              		  <div class="form-group">
+		                        <label>Protein(g):</label>
+		                         <input class="form-control"  type="number" id="tplTPrEdit" th:field="*{tplTPr}" placeholder="Enter Protein(g)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTPr')}" class="text-danger" th:errors="*{tplTPr}"></p>
+		                    </div>
+	                	</div>   	
+	              </div>
+	              <div class="row">
+	              		<div class="col-sm-4">
+		              		<div class="form-group">
+		                        <label>Carbohydrates(g):</label>
+		                        <input class="form-control"  type="number" id="tplTCarbEdit" th:field="*{tplTCarb}" placeholder="Enter Carbohydrates(g)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTCarb')}" class="text-danger" th:errors="*{tplTCarb}"></p>
+		                    </div>
+	                	</div>   
+	                	<div class="col-sm-4">
+		              		<div class="form-group">
+		                        <label>Fibre(g):</label>
+		                         <input class="form-control"  type="number" id="tplTFibEdit" th:field="*{tplTFib}" placeholder="Enter Fibre(g)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTFib')}" class="text-danger" th:errors="*{tplTFib}"></p>
+		                    </div>
+	                	</div> 
+	                	<div class="col-sm-4">
+		              		  <div class="form-group">
+		                        <label>Sodium(Mg):</label>
+		                         <input class="form-control"  type="number" id="tplTSodEdit" th:field="*{tplTSod}" placeholder="Enter Sodium(Mg)" step="0.01">
+		                      	 <p th:if="${#fields.hasErrors('tplTSod')}" class="text-danger" th:errors="*{tplTSod}"></p>
+		                    </div>
+	                	</div>   	
+	              </div>
+	              <div class="row">
+	              	<div class="col-sm-6">
+		              		<div class="form-group">
+		                        <label>Objectives:</label>
+		                        <input class="form-control"  type="text" id="tplObjEdit" th:field="*{tplObj}" placeholder="Objectives">
+		                      	 <p th:if="${#fields.hasErrors('tplObj')}" class="text-danger" th:errors="*{tplObj}"></p>
+		                    </div>
+	                	</div>   
+	                	<div class="col-sm-6">
+		              		<div class="form-group">
+		                        <label>How to achieve:</label>
+		                         <input class="form-control"  type="text" id="tplPlanEdit" th:field="*{tplPlan}" placeholder="How to achieve">
+		                      	 <p th:if="${#fields.hasErrors('tplPlan')}" class="text-danger" th:errors="*{tplPlan}"></p>
+		                    </div>
+	                	</div> 
+	              </div>
+	              <div class="modal-footer">
+	               		<button type="button" class="btn btn-default cancelButton" th:attr="data-cancel-url=@{/nadMPTemplate/list}">Cancel</button>&nbsp&nbsp 
+			         	 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+			         	<button type="submit" class="btn btn-primary">Update</button>    
+			       </div>        
+            </form>
+              </div>           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      
+      
+</div>    
+<!-- --------------------------------------------- CREATE NAD MEAL PLAN CATEGORY RECORD MODAL VIEW END ---------------------------------------------  -->
+ 	
+</html>

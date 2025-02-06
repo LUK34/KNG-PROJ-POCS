@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+		
+<!-- --------------------------------------------- CREATE NAD MEAL PLAN CATEGORY RECORD MODAL VIEW START ---------------------------------------------  -->
+<div th:fragment="createNadMPCategoryModal">
+	
+ 	<div class="modal fade"  id="createNadMPCategoryModal" >
+        <div class="modal-dialog modal-lg" style="width:70%">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Create Meal Plan Category Record</h4>
+              <button type="button" class="close cancelButton" th:attr="data-cancel-url=@{/nadMPCategory/list}" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- enter here -->
+              <form th:action="@{/nadMPCategory/create}" th:object="${nadMPCategoryDto}" method="POST">
+	              <div class="row">
+	                      
+	                    <div class="col-sm-6">
+	                       <div class="form-group">
+		                        <label>Category En:</label>
+		                        <input class="form-control"  type="text" id="ctg" th:field="*{ctg}" placeholder="Enter Category En">
+		                      	 <p th:if="${#fields.hasErrors('ctg')}" class="text-danger" th:errors="*{ctg}"></p>
+		                   </div>	                   
+	                    </div>
+	                 	 <div class="col-sm-6">
+		              		<div class="form-group">
+		                        <label>Category Ar:</label>
+		                        <input class="form-control" type="text" id="ctga" th:field="*{ctga}" placeholder="Enter Category Ar">
+		                      	<p th:if="${#fields.hasErrors('ctga')}" class="text-danger" th:errors="*{ctga}"></p>
+		                     </div>
+	                	</div>   
+	              </div>
+	              <div class="row">
+	              		<div class="col-sm-6">
+		              		<div class="form-group">
+		                        <label>Status:</label>
+		                         <select class="form-control" id="stat" th:field="*{stat}" placeholder="Enter Status">		        	     					  					    					    
+				          			<option value="Y" selected>Active</option>
+ 						 			 <option value="N">Inactive</option>
+ 					    			</select>	
+		                    </div>
+	                	</div>   
+	                	<div class="col-sm-6">
+		              		  
+	                	</div>   	
+	              </div>
+	              <div class="modal-footer">
+	               		<button type="button" class="btn btn-default cancelButton" th:attr="data-cancel-url=@{/nadMPCategory/list}">Cancel</button>&nbsp&nbsp 
+			         	<button type="submit" class="btn btn-primary">Create</button>    
+			       </div>        
+            </form>
+              </div>           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      
+      
+</div>    
+<!-- --------------------------------------------- CREATE NAD MEAL PLAN CATEGORY RECORD MODAL VIEW END ---------------------------------------------  -->
+ 	
+</html>

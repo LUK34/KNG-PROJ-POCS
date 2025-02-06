@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- --------------------------------------------- EDIT/UPDATE NAD MEAL PLAN CATEGORY RECORD MODAL VIEW START ---------------------------------------------  -->
+ <div th:fragment="editNadMPCategoryModal">
+	  
+ 		<div class="modal fade"  id="editNadMPCategoryModal" >
+        <div class="modal-dialog modal-lg" style="width:70%">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Meal Plan Category Record</h4>
+              <button type="button" class="close cancelButton" th:attr="data-cancel-url=@{/nadMPCategory/list}" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+           <form th:action="@{/nadMPCategory/updateById}" th:object="${nadMPCategoryDto}" method="post">
+           <input type="hidden" name="_method" value="PUT">
+            <div class="modal-body">
+	              <div class="row">
+	                      
+	                    <div class="col-sm-6">
+	                      <!-- text input -->
+	                     <div class="form-group" hidden>
+	                        <label>Id:</label>
+	                        <input class="form-control" type="hidden" id="idEdit" th:field="*{id}" readonly>
+	                      </div>
+	                      
+	                      <div class="form-group">
+	                        <label>Category En:</label>
+	                        <input class="form-control" type="text" id="ctgEdit" th:field="*{ctg}">
+	                        <p th:if="${#fields.hasErrors('ctg')}" class="text-danger" th:errors="*{ctg}"></p>
+	                      </div>
+	                      
+	                    </div>
+	                 	 <div class="col-sm-6">
+		              		  <div class="form-group">
+		                        <label>Category Ar:</label>
+		                        <input class="form-control" type="text"  id="ctgaEdit" th:field="*{ctga}">
+		                        <p th:if="${#fields.hasErrors('ctga')}" class="text-danger" th:errors="*{ctga}"></p>
+		                      </div>
+	                	</div>   
+	              </div>
+	              	<div class="row">
+		              		  
+		                	<div class="col-sm-6">
+			              		  <div class="form-group">
+			                        <label>Status:</label>
+			                         <select class="form-control" id="statEdit" th:field="*{stat}">    					  					    					    
+					          			<option value="Y" selected>Active</option>
+	 						 			 <option value="N">Inactive</option>
+	 					    			</select>	
+			                      </div>
+		                	</div>   	
+		             	 </div>
+	             </div>
+	              <div class="modal-footer">
+		              <button type="button" class="btn btn-default cancelButton" th:attr="data-cancel-url=@{/nadMPCategory/list}">Cancel</button>&nbsp&nbsp
+			          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+			          <button type="submit" class="btn btn-primary">Update</button>    
+			       </div>        
+            </form>
+              </div>           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+     
+</div>
+ <!-- --------------------------------------------- EDIT/UPDATE NAD MEAL PLAN CATEGORY RECORD MODAL VIEW END  ---------------------------------------------  -->
+ 
+ 
+ </html>

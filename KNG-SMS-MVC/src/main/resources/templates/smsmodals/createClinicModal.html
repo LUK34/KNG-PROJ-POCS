@@ -1,0 +1,72 @@
+<html xmlns:th="http://www.thymeleaf.org">
+		
+<!-- --------------------------------------------- CREATE CLINIC RECORD MODAL VIEW START ---------------------------------------------  -->
+<div th:fragment="createClinicModal">
+	
+ 	<div class="modal fade"  id="createClinicModal" >
+        <div class="modal-dialog modal-lg" style="width:70%">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Create Clinic Record</h4>
+              <button type="button" class="close cancelButton" th:attr="data-cancel-url=@{/clinicSetup/list}" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- enter here -->
+              <form th:action="@{/clinicSetup/create}" th:object="${clinicSetupDto}" method="POST">
+	              <div class="row">
+	                      
+	                    <div class="col-sm-6">
+	                      <!-- text input -->
+	                      
+	                      <div class="form-group">
+	                        <label>Clinic Id:</label>
+	                        <input class="form-control" type="number" id="clinicid" th:field="*{clinicid}" placeholder="Enter Clinic Id">
+	                        <p th:if="${#fields.hasErrors('clinicid')}" class="text-danger" th:errors="*{clinicid}"></p>
+	                      </div>
+	                      
+	                    </div>
+	                 	 <div class="col-sm-6">
+		              		  <div class="form-group">
+		                        <label>Clinic Name En:</label>
+		                        <input class="form-control"  type="text" id="cname" th:field="*{cname}" placeholder="Enter Clinic Name En">
+		                      	 <p th:if="${#fields.hasErrors('cname')}" class="text-danger" th:errors="*{cname}"></p>
+		                      </div>
+	                	</div>   
+	              </div>
+	              <div class="row">
+	              		<div class="col-sm-6">
+		              		  <div class="form-group">
+		                        <label>Clinic Name Ar:</label>
+		                        <input class="form-control" type="text" id="cnamea" th:field="*{cnamea}" placeholder="Enter Clinic Name Ar">
+		                      	<p th:if="${#fields.hasErrors('cnamea')}" class="text-danger" th:errors="*{cnamea}"></p>
+		                      </div>
+	                	</div>   
+	                	<div class="col-sm-6">
+		              		  <div class="form-group">
+		                        <label>Status:</label>
+		                         <select class="form-control" id="stat" th:field="*{stat}" placeholder="Enter Status">		        	     					  					    					    
+				          			<option value="Y" selected>Active</option>
+ 						 			 <option value="N">Inactive</option>
+ 					    			</select>	
+		                      </div>
+	                	</div>   	
+	              </div>
+	              <div class="modal-footer">
+	               		<button type="button" class="btn btn-default cancelButton" th:attr="data-cancel-url=@{/clinicSetup/list}">Cancel</button>&nbsp&nbsp 
+			         	<button type="submit" class="btn btn-primary">Create</button>    
+			       </div>        
+            </form>
+              </div>           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      
+      
+</div>    
+<!-- --------------------------------------------- CREATE CLINIC RECORD MODAL VIEW END ---------------------------------------------  -->
+ 	
+</html>

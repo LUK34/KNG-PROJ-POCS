@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<title>KNG Food DB</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+	<div layout:fragment="content">
+	
+	<div th:if="${message != null}" id="toastContainer" th:attr="data-message=${message}"></div>
+	
+			<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">KNG Food DB</h1>
+						
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Nutritionists</a></li>
+							<li class="breadcrumb-item active"><a th:href="@{/kngFoodDb/list}">KNG Food DB</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+		
+		
+		  <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+             <div class="card-header">
+                <h3 class="card-title">List of KNG Food DB:&nbsp; &nbsp;
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNadKngFoodDbModal" >Create</button>
+				</h3>
+              </div>
+             
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table">
+                  <thead class="thead-custom">
+                  <tr>
+					<th>#</th>
+                    <th>Food Code</th>
+                    <th>Food Name</th>
+                    <th>Food Type</th>
+                    <th>Portions</th>
+                    <th>Measurement</th>
+                    <th>Calories(Kcal)</th>
+                    <th>Carbohydrates(g)</th>
+                    <th>Fat(g)</th>
+                    <th>Protein(g)</th>
+                    <th>Fiber(g)</th>
+                    <th>Sodium(g)</th>
+                    <th>Status</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+					 <tr th:each="f:${nadKngFoodDBList}">
+					 	  <td>
+						  		<a th:href="@{/kngFoodDb/editById(id=${f.id})}" class="btn btn-primary editButton">
+    								<i class="nav-icon fas fa-edit"></i>
+								</a>
+						  </td>
+						  <td th:text="${f.fcode}"></td>
+						  <td th:text="${f.foodName}"></td>
+						  <td th:text="${f.foodType}"></td>
+						  <td th:text="${f.portions}"></td>
+						  <td th:text="${f.measurement}"></td>
+						  <td th:text="${f.calories}"></td>
+						  <td th:text="${f.carbohydrates}"></td>
+						  <td th:text="${f.fat}"></td>
+						  <td th:text="${f.protein}"></td>
+						  <td th:text="${f.fiber}"></td>
+						  <td th:text="${f.sodium}"></td>
+						  <td th:text="${f.stat == 'Y' ? 'Active' : 'InActive'}"></td>
+						  
+						 
+					 </tr>
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    
+    
+    <!-- --------------------------------------------- CREATE NAD CLINIC RECORD MODAL VIEW START ---------------------------------------------  -->
+ 		
+ 		<th:block th:replace="nadmodals/createNadKngFoodDbModal :: createNadKngFoodDbModal"></th:block>
+ 	
+	<!-- --------------------------------------------- CREATE NAD CLINIC RECORD MODAL VIEW END ---------------------------------------------  -->
+ 	
+ 	
+ 			
+	<!-- --------------------------------------------- EDIT/UPDATE NAD CLINIC RECORD MODAL VIEW START ---------------------------------------------  -->
+ 
+ 		<th:block th:replace="nadmodals/editNadKngFoodDbModal :: editNadKngFoodDbModal"></th:block>
+      
+ 	<!-- --------------------------------------------- EDIT/UPDATE NAD CLINIC RECORD MODAL VIEW END  ---------------------------------------------  -->
+ 
+ 
+ 
+ 	<!-- --------------------------------------------- DELETE NAD RECORD MODAL VIEW START  ---------------------------------------------  -->
+ 		
+ 	 <th:block th:replace="nadmodals/deleteModal :: deleteModal"></th:block>
+ 	
+ 	<!-- --------------------------------------------- DELETE NAD RECORD MODAL VIEW END  ---------------------------------------------  -->
+ 	
+ </div>
+ 
+ 
+ 
+</body>
+<th:block layout:fragment="script">
+			
+		<script src="../admin/custom/nadjs/kngFoodDb.js"></script>
+
+	   <script th:inline="javascript"> 
+	    document.addEventListener("DOMContentLoaded", function () 
+	    {
+	        /*<![CDATA[*/
+	        // Thymeleaf processes showModal and assigns it as a boolean
+	        let showNadKngFoodDbCreateModal = /*[[${showNadKngFoodDbCreateModal}]]*/ false;
+	        let showNadKngFoodDBDtoEditModal = /*[[${showNadKngFoodDBDtoEditModal}]]*/ false;
+
+	        if (showNadKngFoodDbCreateModal)
+	        { // Check if showModal is true
+	            let modal = new bootstrap.Modal(document.getElementById("createNadKngFoodDbModal"));
+	            modal.show(); // Open the modal
+	        }
+	        
+	        if (showNadKngFoodDBDtoEditModal)
+	        { // Check if showModal is true
+	            let modal = new bootstrap.Modal(document.getElementById("editNadKngFoodDbModal"));
+	            modal.show(); // Open the modal
+	        }
+	        /*]]>*/
+	    
+	    });
+	</script>
+	
+	 
+	 
+</th:block>
+</html>

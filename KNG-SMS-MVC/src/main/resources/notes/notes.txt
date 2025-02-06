@@ -1,0 +1,41 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.Path of how -> delete url is dynamically setup on delteModal by passing the handler mapper and ID value using AJAX and Springboot??
+Ans:
+e.g:
+	1.1 nadClinic.html	
+	
+	1.2 nadClinic.html :
+		CODE:	
+			<th:block th:replace="nadmodals/editNadKngClinicModal :: editNadKngClinicModal"></th:block>
+	
+	1.3 nadClinic.html :
+		CODE:
+			<th:block layout:fragment="script">
+			<script src="../admin/custom/nadjs/nadClinics.js"></script> ...
+	
+	1.4 nadClinics.js -> AJAX logic to dynamically listen when the edit modal is open and assign the url dynamically :
+		CODE:
+			$('#editNadKngClinicModal').find('.btn-danger').attr('data-delete-url', '/nadClinics/deleteById?id=' + nadclinic.id);
+		
+		                // Show the modal only after successful data fetch
+		                $('#editNadKngClinicModal').modal('show');
+	
+	1.5 The editModal will open and the delete url will be placed dynamically for the button containing bt-danger.
+		CODE:
+			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+	
+	1.6 When the `Delete` button is clicked, the ../admin/custom/jd/utilities_js/deleteModalListener.js will be called
+	using AJAX. It will listen and will use  method: 'DELETE' to send the request to controller. The controller layer will take care of the rest.
+	
+-------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+2. Relationship between 2 entities. 
+	2.1 How to get map and get column values in which relationships are defined. The below is an example. 
+	// Configure ModelMapper for the custom mapping
+	modelMapper.typeMap(NadMPTemplate.class, NadMPTemplateDto.class).addMappings(mapper -> mapper.map(src -> src.getNadMPCategory().getId(), NadMPTemplateDto::setTplCat));
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------

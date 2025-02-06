@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<title>KNG Clinics</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+	<div layout:fragment="content">
+	
+	<div th:if="${message != null}" id="toastContainer" th:attr="data-message=${message}"></div>
+	
+			<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">KNG Clinics</h1>
+						
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">System Configuration</a></li>
+							<li class="breadcrumb-item active"><a th:href="@{/clinicSetup/list}">KNG Clinics</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+		
+		
+		  <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+             <div class="card-header">
+                <h3 class="card-title">List of KNG Clinics:&nbsp; &nbsp;
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createClinicModal" >Create</button>
+				</h3>
+              </div>
+             
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table">
+                  <thead class="thead-custom">
+                  <tr>
+					<th>#</th>
+                    <th>Clinic Id</th>
+                    <th>Clinic Name En</th>
+                    <th>Clinic Name Ar</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+					 <tr th:each="f:${clinicList}">
+						  <td th:text="${f.id}"></td>
+						  <td th:text="${f.clinicid}"></td>
+						  <td th:text="${f.cname}"></td>
+						  <td th:text="${f.cnamea}"></td>
+						  <td th:text="${f.stat == 'Y' ? 'Active' : 'Inactive'}"></td>
+						  <td>
+						  		<a th:href="@{/clinicSetup/editById(id=${f.id})}" class="btn btn-primary editButton">
+    								<i class="nav-icon fas fa-edit"></i>
+    								<!-- <i class="nav-icon fa fa-search"></i> -->
+								</a>
+						  </td>
+						 
+					 </tr>
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    
+    
+    <!-- --------------------------------------------- CREATE NAD CLINIC RECORD MODAL VIEW START ---------------------------------------------  -->
+ 		
+ 		<th:block th:replace="smsmodals/createKngClinicModal :: createKngClinicModal"></th:block>
+ 	
+	<!-- --------------------------------------------- CREATE NAD CLINIC RECORD MODAL VIEW END ---------------------------------------------  -->
+ 	
+ 	
+ 			
+	<!-- --------------------------------------------- EDIT/UPDATE NAD CLINIC RECORD MODAL VIEW START ---------------------------------------------  -->
+ 
+ 		<th:block th:replace="smsmodals/editKngClinicModal :: editKngClinicModal"></th:block>
+      
+ 	<!-- --------------------------------------------- EDIT/UPDATE NAD CLINIC RECORD MODAL VIEW END  ---------------------------------------------  -->
+ 
+ 
+ 
+ 	<!-- --------------------------------------------- DELETE NAD RECORD MODAL VIEW START  ---------------------------------------------  -->
+ 		
+ 	 <th:block th:replace="smsmodals/deleteModal :: deleteModal"></th:block>
+ 	
+ 	<!-- --------------------------------------------- DELETE NAD RECORD MODAL VIEW END  ---------------------------------------------  -->
+ 	
+ </div>
+ 
+ 
+ 
+</body>
+<th:block layout:fragment="script">
+			
+		<script src="../admin/custom/smsjs/clinics.js"></script>
+
+	   <script th:inline="javascript"> 
+	    document.addEventListener("DOMContentLoaded", function () 
+	    {
+	        /*<![CDATA[*/
+	        // Thymeleaf processes showModal and assigns it as a boolean
+	        let showClinicCreateModal = /*[[${showClinicCreateModal}]]*/ false;
+	        let showClinicEditModal = /*[[${showClinicEditModal}]]*/ false;
+
+	        if (showClinicCreateModal)
+	        { // Check if showModal is true
+	            let modal = new bootstrap.Modal(document.getElementById("createClinicModal"));
+	            modal.show(); // Open the modal
+	        }
+	        
+	        if (showClinicEditModal)
+	        { // Check if showModal is true
+	            let modal = new bootstrap.Modal(document.getElementById("editClinicModal"));
+	            modal.show(); // Open the modal
+	        }
+	        /*]]>*/
+	    
+	    });
+	</script>
+	
+	 
+	 
+</th:block>
+</html>
