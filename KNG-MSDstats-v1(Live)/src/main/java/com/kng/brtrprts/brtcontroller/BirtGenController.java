@@ -128,6 +128,10 @@ public class BirtGenController
 	    {
 	    	 reportName = "KngMsd_MedasUsers_su.rptdesign";
 	    }
+	    else if(statusid != 1 && kwtnkwtid == 1 && kngMohId != 1 && usrtypeid == 1)
+	    {
+	    	 reportName = "KngMsd_MedasUsers_ku.rptdesign";
+	    }
 	    // ----------------------------------------------------------------------------
 	    // When 3 of the filters -> All
 	    else if(statusid == 1 && kwtnkwtid == 1 && kngMohId == 1 && usrtypeid != 1)
