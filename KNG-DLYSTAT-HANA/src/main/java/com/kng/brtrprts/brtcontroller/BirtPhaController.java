@@ -48,10 +48,12 @@ public class BirtPhaController
 		if(brtFormBean.getBrtOid()==0)
 		{					
 			reportUrl= reportBaseUrl+"KngMsd_PharamacyStockByAll.rptdesign";
+			//reportUrl= reportBaseUrl+"KngMsd_PharamacyStockByAll_copy.rptdesign";
 		}
 		else 
 		{
 			reportUrl= reportBaseUrl+"KngMsd_PharamacyStockByClinic.rptdesign&OID="+oid;
+			//reportUrl= reportBaseUrl+"KngMsd_PharamacyStockByClinic_copy.rptdesign&OID="+oid;
 		}
 		
 		response.sendRedirect(reportUrl);
@@ -279,10 +281,28 @@ public class BirtPhaController
 		System.out.println("Total Stock Clinic Wise Report====" + reportBaseUrl);	
 		
 				reportUrl= reportBaseUrl+"KngMsd_Pha_TotalStock_CampWise.rptdesign";
+				//reportUrl= reportBaseUrl+"KngMsd_Pha_TotalStock_CampWise_copy.rptdesign";
 
 		response.sendRedirect(reportUrl);
 		
 	}
+	
+	@GetMapping("/eclinicPharmacyReport")
+	public void getEclinicPharmacyReport(@ModelAttribute BrtFormBean brtFormBean, HttpServletResponse response) throws IOException
+	{
+		System.out.println("eclinicPharmacyReport====" + reportBaseUrl);
+		sdate=brtFormBean.getBrtSdate();
+		edate=brtFormBean.getBrtEdate();
+		oid=brtFormBean.getBrtOid();
+		
+		if(brtFormBean.getBrtSdate()!=null && brtFormBean.getBrtEdate()!=null)
+		{
+			reportUrl=reportBaseUrl+"KngMsd_Pharmacy_ItemCurrentStock_Date.rptdesign&SDATE="+sdate+"&EDATE="+edate+"&OID="+oid;
+		}
+		
+		response.sendRedirect(reportUrl);
+	}
+	
 	
 	
 	

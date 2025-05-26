@@ -524,7 +524,74 @@
  <!-- ------------------------------------------ 4.7 Pharmacy Total Stock Clinic Wise Report END  ------------------------------------------ -->
 
      
+ <!-- ------------------------------------------ 4.8 Eclinic Pharmacy Report START ------------------------------------------ -->      
      
+       <div class="modal fade" id="eprModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">8. Eclinic Pharmacy Report</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+              <form id="epr" th:action="@{/eclinicPharmacyReport}"  th:object=${brtFormBean} >
+		            <div class="modal-body">
+						
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="epr-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+						
+		                <div class="row">
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                          <input type="date" th:field="*{brtSdate}" id="epr_sdate" class="form-control">
+				                      </div>
+			                	</div> 
+			                	<div class="col-sm-6">
+			                    	<div class="form-group">
+				                         <label>To Date:</label>
+				                         <input type="date" th:field="*{brtEdate}" id="epr_edate" class="form-control">
+				                      </div>
+			                	</div>    
+						 </div>  
+						  
+						  <div class="row">
+			                   <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="epr_oid">
+				        	       			<!--<option th:value='0'>--All Clinics--</option>	-->		    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+			                	  
+						 	</div>  
+  
+			           </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+<!-- ------------------------------------------ 4.8 Eclinic Pharmacy Report END ------------------------------------------ -->      
+ 
      
      
      
