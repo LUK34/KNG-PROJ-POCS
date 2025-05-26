@@ -247,12 +247,24 @@ export const reportSections =
 			
 			{ 
 				buttonTitleNo:8, 
+				buttonTitle: "Eclinic Pharmacy Report",
+				buttonArabicTitle:"تقرير صيدلية إكلينيك",
+				modalTarget: "#eprModal",
+				buttonClass: "col-md-3" ,
+				reportStatus:'Y'
+			},
+			
+			
+			{ 
+				buttonTitleNo:9, 
 				buttonTitle: "Pharmacy Items Total Dispensed Report",
 				buttonArabicTitle:"تقرير إجمالي الأصناف المصروفة من الصيدلية",
 				modalTarget: "#pitdrModal",
 				buttonClass: "col-md-3" ,
 				reportStatus:'N'
 			},
+			
+			
 	
 		]
 	},
@@ -331,6 +343,7 @@ export const titleTranslations =
     "Total Stock Camp Wise Report":"إجمالي تقرير معسكر المخزون الحكيم",
     "Pharmacy Items Total Dispensed Report": "تقرير إجمالي الأصناف المصروفة من الصيدلية",
     "Pharmacy Track Item Transaction":"قرير إجمالي الأصناف المصروفة من الصيدلية",
+    "Eclinic Pharmacy Report":"تقرير صيدلية إكلينيك",
     "Sick Leave by Doctor Summary Report": "تقرير ملخص الإجازات المرضية حسب الطبيب",
     "Sick Leave Summary Report": "تقرير ملخص الإجازات المرضية",
     "Exemption Details By Doctor": "تفاصيل الإعفاءات حسب الطبيب",

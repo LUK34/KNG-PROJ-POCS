@@ -336,11 +336,11 @@ export function medicineDynaSingleFilter(officeId, medicineDropdownId) {
 // ------------------------------- OFFICE FILTER OPTIONS START ------------------------------- 
 
 export function officeFilterWithoutAllCondition(officedropdownId) {
-   const officeNames = ["HeadQuarters-MultiSpeciality","Sheikh Salem Al Ali Camp","Summod Camp-MultiSpeciality","Tahreer Camp-Dental","Tahreer Camp-MultiSpeciality"];
+   const officeNames = ["HeadQuarters-MultiSpeciality","Sheikh Salem Al Ali Camp","Summod Camp-MultiSpeciality","Tahreer Camp-Dental","Tahreer Camp-MultiSpeciality","Officers Club Clinic"];
     const officeDropdown = document.getElementById(officedropdownId);
 
     officeNames.forEach((office, index) => {
-        const option = new Option(office, index + 1); // Month id starts from 1 for January
+        const option = new Option(office, index + 1); // Office id starts from 1 for HQ
         officeDropdown.add(option);
     });
 }
